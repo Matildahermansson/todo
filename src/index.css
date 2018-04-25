@@ -69,3 +69,18 @@ ul.theList {
   color: #FFF;
   border: 2px solid #0066FF;
 }
+
+.checkedItem
+{
+  color: white;
+  font-style: italic;
+}
+
+#complete
+{
+  margin-left: 25px;
+  background-color: #0066FF;
+  color: #FFF;
+  border: 2px solid #0066FF;
+
+}

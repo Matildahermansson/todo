@@ -40,17 +40,10 @@ class TodoList extends Component {
         e.preventDefault();
 
     }
-
-    deleteItem(key) {
-        let filteredItems = this.state.items.filter(function (item) {
-            return (item.key !== key);
-        });
-
-        this.setState({
-            items: filteredItems
-        });
-
-    }
+deleteItem(key){
+    const filteredItems = this.state.items.filter((item, i) => key !== i);
+    this.setState({items: filteredItems});
+}
 
     markTodoDone(i) {
         const markedItems = this.state.items.map((item, index) => i === index ? {...item, checked: !item.checked}: item);
@@ -59,11 +52,7 @@ class TodoList extends Component {
     }
 
     onRemoveDone() {
-        const newState = this.state.items.filter((item) => {
-            if (!item.checked) {
-                return item;
-            }
-        });
+        const newState = this.state.items.filter((item) => {if (!item.checked) return item;});
         this.setState({ items: newState });
     }
 
@@ -80,10 +69,9 @@ class TodoList extends Component {
                 </div>
                 <TodoItems entries={this.state.items}
                            delete={this.deleteItem}
-                    //Lagt till marked as done
+                           marked={(index) => this.markTodoDone(index)}
+                           deleteDone={()=>this.onRemoveDone()}
 
-
-                           markedItems={(index, e) => this.markTodoDone(index, e)}
                 />
 
             </div>
